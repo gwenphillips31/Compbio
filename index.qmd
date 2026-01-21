@@ -7,3 +7,5 @@ This is a Quarto website.
 To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 
 edit
+
+[Homework_2](Homework_02.html)

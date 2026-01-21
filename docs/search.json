@@ -4,13 +4,13 @@
     "href": "index.html",
     "title": "Compbio",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nedit"
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nedit\nHomework_2"
   },
   {
-    "objectID": "about.html",
-    "href": "about.html",
-    "title": "About",
+    "objectID": "Homework_02.html",
+    "href": "Homework_02.html",
+    "title": "Homework_02",
     "section": "",
-    "text": "About this site"
+    "text": "Mostly testing if this works.\n\nx&lt;- c(2,3,4)\ny&lt;- c(5,4,3)\n\nprint (x)\n\n[1] 2 3 4"
   }
 ]
