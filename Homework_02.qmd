@@ -1,0 +1,15 @@
+---
+title: "Homework_02"
+format: html
+---
+
+Mostly testing if this works.
+
+
+```{r}
+x<- (2,3,4)
+y<- (5,4,3)
+
+print (x)
+```
+
