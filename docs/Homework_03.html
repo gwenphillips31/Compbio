@@ -306,21 +306,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     }
     .Internal(set.seed(seed, i.knd, normal.kind, sample.kind))
 }
-&lt;bytecode: 0x0000018507225f40&gt;
+&lt;bytecode: 0x000001863ce65c00&gt;
 &lt;environment: namespace:base&gt;</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>coords<span class="ot">&lt;-</span> (<span class="fu">runif</span>(<span class="dv">2</span>))</span>
 <span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(coords)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>[1] 0.731215821 0.002124412</code></pre>
+<pre><code>[1] 0.3285496 0.7307598</code></pre>
 </div>
 <div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>r<span class="ot">&lt;-</span> <span class="fu">sqrt</span>(coords[<span class="dv">1</span>]<span class="sc">^</span><span class="dv">2</span> <span class="sc">+</span>coords[<span class="dv">2</span>]<span class="sc">^</span><span class="dv">2</span>)</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>theta<span class="ot">&lt;-</span><span class="fu">atan</span>(coords[<span class="dv">2</span>]<span class="sc">/</span> coords[<span class="dv">1</span>])</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>polar<span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="at">r=</span>r,<span class="at">theta=</span>theta)</span>
 <span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(polar)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>          r       theta 
-0.731218907 0.002905306 </code></pre>
+<pre><code>        r     theta 
+0.8012208 1.1482751 </code></pre>
 </div>
 </div>
 <section id="q4" class="level3">
