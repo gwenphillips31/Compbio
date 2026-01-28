@@ -44,7 +44,7 @@ print (V3)
 ## Q3 
 Set.seed sets the random coordinates to a value so they don't change on you.  Using the formulas provided by the textbook I was able to convert to radius and theta.
 ```{r}
-set.seed
+set.seed (6)
 coords<- (runif(2))
 print(coords)
 
@@ -55,17 +55,18 @@ print(polar)
 ```
 
 ### Q4
-I updated the vector to the line for the arc according to the homework.  Then I searched the vector for the character "aphid" to find the number in line.  The aphid is 4th in line.
+I updated the vector to the line for the arc according to the homework.  Then I searched the vector for the character "aphid" to find the number in line.  The aphid is 3th in line.
 ```{r}
 queue<- c("sheep", "fox", "owl", "ant")
-queue<- c("sheep", "fox", "owl", "ant","serpent")
-queue<- c("sheep", "fox", "owl", "ant","serpent","sheep")
-queue<- c("donkey","sheep", "fox", "owl", "ant","serpent","sheep")
-queue<- c("donkey","sheep", "fox", "owl", "ant","sheep")
-queue<- c("donkey","sheep", "fox", "ant","sheep")
-queue<- c("donkey","sheep", "fox", "aphid","ant","sheep")
+queue [5]<- "serpent"
+queue [6]<- "sheep"
+queue [1]<- "donkey"
+queue<- queue [-5]
+queue<- queue [-3]
+queue <- append(queue,'aphid', after = 2)
 
-match(queue,"aphid")
+which (queue== "aphid")
+print(queue)
 ```
 
 ### Q5
