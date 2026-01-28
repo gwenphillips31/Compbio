@@ -69,8 +69,7 @@ match(queue,"aphid")
 ```
 
 ### Q5
-
-
+v removes the integers where they are divisible by 2,3, and 7.  The sequence was made and then the integers were removed from the sequence.
 ```{r}
 q<-c(seq(1:100))
 v<- q[which(q %% 2 != 0 & q %% 3 != 0 & q %% 7 != 7)]
