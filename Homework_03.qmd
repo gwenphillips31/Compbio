@@ -1,0 +1,79 @@
+---
+title: "Homework_03"
+format: html
+---
+
+### Homework 3 Vectors
+### Jan 28 2026
+### Gwen Phillips
+
+### --------------------------------------------------------
+### Start of script
+
+# Q1
+x,a,b are all set as variables.  When you use them within the code it will fill in the variables with the saved values.  Adding parenthesis changes the order of operations.  Multiplication symbols were added to part c in order for R to understand the code.
+```{r}
+x<- 1.1
+a<- 2.2
+b<- 3.3
+
+#a.
+z<- x^a^b
+print(z)
+#b
+z<- (x^a)^b
+print(z)
+#c
+z<- ((3*x)^3)+((2*x)^2)+1
+print(z)
+```
+
+### Q2
+The first part was just taking two sequences to make a vector.  Using the second part and the rep function you can either make a sequence into a vector and nest it or nest the sequence directly into the rep code.
+```{r}
+V1<- c(seq(1:8),seq(7:1))
+print(V1)
+
+V2<- rep(1:5, 1:5)
+print(V2)
+
+V3<- rep(5:1, 1:5)
+print (V3)
+```
+
+## Q3 
+Set.seed sets the random coordinates to a value so they don't change on you.  Using the formulas provided by the textbook I was able to convert to radius and theta.
+```{r}
+set.seed
+coords<- (runif(2))
+print(coords)
+
+r<- sqrt(coords[1]^2 +coords[2]^2)
+theta<-atan(coords[2]/ coords[1])
+polar<- c(r=r,theta=theta)
+print(polar)
+```
+
+### Q4
+I updated the vector to the line for the arc according to the homework.  Then I searched the vector for the character "aphid" to find the number in line.  The aphid is 4th in line.
+```{r}
+queue<- c("sheep", "fox", "owl", "ant")
+queue<- c("sheep", "fox", "owl", "ant","serpent")
+queue<- c("sheep", "fox", "owl", "ant","serpent","sheep")
+queue<- c("donkey","sheep", "fox", "owl", "ant","serpent","sheep")
+queue<- c("donkey","sheep", "fox", "owl", "ant","sheep")
+queue<- c("donkey","sheep", "fox", "ant","sheep")
+queue<- c("donkey","sheep", "fox", "aphid","ant","sheep")
+
+match(queue,"aphid")
+```
+
+### Q5
+
+
+```{r}
+q<-c(seq(1:100))
+v<- q[which(q %% 2 != 0 & q %% 3 != 0 & q %% 7 != 7)]
+
+print (v)
+```
