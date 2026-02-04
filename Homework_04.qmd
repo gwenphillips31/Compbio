@@ -33,7 +33,7 @@ mean(m[2,])
 ###eigen function
 e<- eigen(m,symmetric=T)
 print(e)
-#### These are floats since they have decimals
+#### These are doubles since they have decimals
 typeof(e)
 ### These are considered a list
 ```
@@ -80,17 +80,18 @@ my_letters<- sample(LETTERS, 26)
 my_letters
 
 ### create a df
-df<- cbind(my_unis, my_letters)
+df<- data.frame(x= my_unis,y= my_letters)
 ### Enter NAs into 4 random rows
-df [sample(nrow(my_unis),4),]<- NA ### didnt work
+df[sample(nrow(df), 4), 1]<- NA 
 
 ### intentify which rows have a missing variable
 which(!complete.cases(df))
 ### reorder to aphabetical
-df_alphabetic<- df[order(df[,2] )]### numbers in alphabet order but doesn't show letters?
-print(df_alphabetic)
+library(dplyr)
+df_alphabetic<- df[order(df[, 2]), ]
+ print(df_alphabetic)
 ### find mean of col 1
-mean_df<- mean(df[,1]) ### not working idk
+mean_df<- mean(df[,1]) 
 print(mean_df)
 ```
 
