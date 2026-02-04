@@ -1,0 +1,98 @@
+---
+title: "Homework_04"
+format: html
+---
+
+### Homework 4
+### Gwen Phillips
+### Feb 4 2026
+
+###________________________
+
+Q1.
+The sample function provides a random number within the constraints provided.  The t() function transposes the matrix or data frame referenced within the parenthesis.  To calculate the sum and mean of certain rows utilize the brackets within the fuction. 
+
+```{r}
+n_dims<- sample(3:10, 1)
+my_vec<- 1:(n_dims^2)
+
+s<- sample(my_vec, 4)
+m<- matrix(s, nrow=2, ncol=2)
+print(m)
+
+###transposing the matrix
+t(m)
+print(m)
+
+### finding matrix sums and means
+sum(m[1,])
+mean(m[1,])
+sum(m[2,])
+mean(m[2,])
+
+###eigen function
+help(eigen)
+e<- eigen(m,symmetric=T)
+print(e)
+#### These are floats since they have decimals
+typeof(e)
+### These are considered a list
+```
+
+Q2.
+Create matrixes, vectors, and lists, then identify them using the typeof() function.  Then isolate certain values within those and creat lists and vectors.
+
+```{r}
+### create a matrix
+my_matrix<- matrix(runif(16),nrow=4, ncol=4)
+my_matrix
+### create a T/F vector
+v<- sample(1:1000, 100)
+my_logical<- v>=500
+my_logical
+### create a vector of 26 random letters
+my_letters<- sample(letters, 26)
+my_letters
+
+### create a list 
+list<-list(my_matrix[2,2],my_logical[2],my_letters[2])
+
+print(list)
+### confirm the list
+typeof(list) ###it is a list
+
+### create a vec of the list elements
+vec<- c(0.01371653, "TRUE", "l")
+### what data type is it
+typeof(vec) ### character
+```
+
+Q3
+Set.seed function allows random numbers to be saved so they don't change in later formulas.  Data frames can be created using the cbind function and the which function can highight specific elements of the data.  The order function reorders that data frame in numeric or alphabetical order depending on the type of vectors.
+```{r}
+### create 26 values between 0 and 10
+set.seed(321)
+my_unis<- runif(26, min=0, max=10)
+my_unis
+
+### create a vector of 26 letters
+set.seed(123)
+my_letters<- sample(LETTERS, 26)
+my_letters
+
+### create a df
+df<- cbind(my_unis, my_letters)
+### Enter NAs into 4 random rows
+df [sample(nrow(my_unis),4),]<- NA ### didnt work
+
+### intentify which rows have a missing variable
+which(!complete.cases(df))
+### reorder to aphabetical
+df_alphabetic<- df[order(df[,2] )]### numbers in alphabet order but doesn't show letters?
+print(df_alphabetic)
+### find mean of col 1
+mean_df<- mean(df[,1]) ### not working idk
+print(mean_df)
+```
+
+
