@@ -31,7 +31,6 @@ sum(m[2,])
 mean(m[2,])
 
 ###eigen function
-help(eigen)
 e<- eigen(m,symmetric=T)
 print(e)
 #### These are floats since they have decimals
