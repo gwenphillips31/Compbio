@@ -28,21 +28,20 @@ output<- data.frame(
 return(output)
 }
 
-pop()
-
-df<- pop(
-    N0=120,
+result <- pop(
+    N0=10,
     r=0.1,
-    k=1000,
-    tfinal=50,
-    tstep= 0.1
+    k=100,
+    tstep= 0.1,
+    tfinal=50
 )
 
 ### Question 2
 
 library(tidyverse)
-library(ggplot)
-plot_growth<- function(df){
+library(ggplot2)
+
+plot_growth<- function(df) {
 ggplot(df, aes(x= time, y= population))+
     geom_line()+
     labs(
@@ -50,8 +49,8 @@ ggplot(df, aes(x= time, y= population))+
         y="pop size",
         title= "log pop growth"
     )+
-        theme_minimal()
+    theme_minimal()
 }
 
-plot_growth(df)
+plot_growth(result)
 ```
