@@ -1,0 +1,57 @@
+---
+title: "Homework_05"
+format: html
+---
+
+### Homework 05
+### 10 Feb 2026
+### Gwen Phillips
+#-------------------------------------------------------------------
+
+Part 1
+The initial population size, N0
+The growth rate, r
+The carrying capacity, K
+The end time for your time vector, tfinal
+The timestep for your time vector,  tstep
+
+```{r}
+### create a function for population over time
+###Start of Function
+pop<- function(N0, r, k, tstep, tfinal){
+time<- seq(from= 0, to= tfinal, by=tstep)
+n_t<- k/(1+((k-N0)/N0)*exp(-r*tstep))
+output<- data.frame(
+    time= time,
+    population= n_t
+)
+return(output)
+}
+
+pop()
+
+df<- pop(
+    N0=120,
+    r=0.1,
+    k=1000,
+    tfinal=50,
+    tstep= 0.1
+)
+
+### Question 2
+
+library(tidyverse)
+library(ggplot)
+plot_growth<- function(df){
+ggplot(df, aes(x= time, y= population))+
+    geom_line()+
+    labs(
+        x="time",
+        y="pop size",
+        title= "log pop growth"
+    )+
+        theme_minimal()
+}
+
+plot_growth(df)
+```
