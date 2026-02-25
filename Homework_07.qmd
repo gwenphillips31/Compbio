@@ -91,9 +91,3 @@ iris7<- iris %>%
 
 print(iris7)
 ```
-
-pivotsw<- starwars%>%
-  select(name,homeworld)%>%
-  group_by(rn=row_number())%>%
-  ungroup()%>%
-  pivot_wider(names_from=homeworld, values_from=name)
