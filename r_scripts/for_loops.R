@@ -141,7 +141,7 @@ k_out<- rep(NA, dfLength)
 maxn_out<- rep(NA,dfLength)
 
 ### turn vecs into df
-storagedf<- data.frame(r_out, k_out,maxn_out)
+storagedf<- data.frame(r_out, k_out, maxn_out)
 
 pop(r=r_values[i], K= k_values)
 ################################ Feb 17
