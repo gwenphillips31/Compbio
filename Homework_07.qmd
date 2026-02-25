@@ -11,6 +11,7 @@ Gwen Phillips
 
 1. Examine the structure of the iris data set. How many observations and variables are in the data set?
 ```{r}
+library(tidyverse)
 data(iris)
 str(iris)
 head(iris)
