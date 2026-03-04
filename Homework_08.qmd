@@ -1,0 +1,139 @@
+---
+title: "Homework_08"
+format: html
+---
+
+March 4 2026
+For loops and randomization tests 
+Gwen Phillips
+#############################################################################
+
+Q1. Using a for loop, write a function to calculate the number of zeroes in a numeric vector. Before entering the loop, set up a counter variable counter <- 0. Inside the loop, add 1 to counter each time you have a zero in the vector. Finally, use return(counter) for the output.
+
+```{r}
+ num_zeroes <- function(numeric_vector) {
+  # Set up a counter variable before entering the loop
+  counter <- 0
+ 
+ for (i in seq_along(numeric_vector)) {
+    if (numeric_vector[i] == 0) {
+        # If it is, add 1 to the counter
+        counter <- counter + 1}
+  }
+  return(counter)
+ }
+
+my_vector <- sample(0:25, 100, replace= TRUE)
+zero_count <- num_zeroes(my_vector)
+print(zero_count)
+
+```
+
+Q2. Use subsetting instead of a loop to rewrite the function as a single line of code.
+
+```{r}
+q2 <- sum(my_vector == 0)
+print (q2)
+```
+
+Q3. Write a function that takes as input two integers representing the number of rows and columns in a matrix. The output is a matrix of these dimensions in which each element is the product of the row number x the column number.
+
+```{r}
+matrix <- function(rows, cols) {
+    i <- 1:rows
+    j <- 1:cols
+    ### multiply the row and columns
+        result_matrix <- outer(i, j, "*")
+    
+    return(result_matrix)
+}
+
+```
+
+Q4. In the next few lectures, you will learn how to do a randomization test on your data. We will complete some of the steps today to practice calling custom functions within a for loop.
+a. Simulate a dataset with 3 groups of data, each group drawn from a distribution with a different mean. The final data frame should have 1 column for group and 1 column for the response variable.
+
+```{r}
+### Set seed so nums don't change later
+set.seed(123)
+
+# Generate data for 3 groups
+n <- 10
+df <- data.frame(
+  Group = rep(c("1", "2", "3"), each = n),
+  Value = c(rnorm(n, mean = 7),
+            rnorm(n, mean = 13),
+            rnorm(n, mean = 18))
+)
+
+head(df)
+```
+
+b. Write a custom function that 1) reshuffles the response variable, and 2) calculates the mean of each group in the reshuffled data. Store the means in a vector of length 3.
+
+```{r}
+shuffle <- function() {
+  group1 <- rnorm(10, mean = 7)
+  group2 <- rnorm(10, mean = 13)
+  group3 <- rnorm(10, mean = 18)
+  
+  # Return the means of the 3 groups
+  return(c(mean(group1), mean(group2), mean(group3)))
+}
+
+
+
+```
+
+c. Use a for loop to repeat the function in b 100 times. Store the results in a data frame that has 1 column indicating the replicate number and 1 column for each new group mean, for a total of 4 columns.
+
+```{r}
+n_sim <- 100
+
+results_df <- data.frame(
+  replicate = 1:n_reps,
+  mean1 = NA,
+  mean2 = NA,
+  mean3 = NA
+)
+
+for (i in 1:n_sim) {
+  # Run function b
+  rep_means <- shuffle()
+  
+  # Store results in the respective columns
+  results_df[i, "mean1"] <- rep_means[1]
+  results_df[i, "mean2"] <- rep_means[2]
+  results_df[i, "mean3"] <- rep_means[3]
+}
+```
+
+
+d. Use qplot() to create a histogram of the means for each reshuffled group. Or, if you want a challenge, use ggplot() to overlay all 3 histograms in the same figure. How do the distributions of reshuffled means compare to the original means?
+
+```{r}
+library(ggplot2)
+library(reshape2)
+library(patchwork)
+
+g1<- ggplot(results_df, aes(x = mean1)) +
+  geom_histogram(position = "identity", alpha = 0.5, binwidth = 0.5) +
+  labs(title = "Shuffled Means", x = "Mean", y = "Frequency")
+
+g2<- ggplot(results_df, aes(x = mean2)) +
+  geom_histogram(position = "identity", alpha = 0.5, binwidth = 0.5) +
+  labs(title = "Shuffled Means", x = "Mean", y = "Frequency")
+
+g3<- ggplot(results_df, aes(x = mean3)) +
+  geom_histogram(position = "identity", alpha = 0.5, binwidth = 0.5) +
+  labs(title = "Shuffled Means", x = "Mean", y = "Frequency")
+
+g1
+g2
+g3
+
+ g1 + g2 + g3
+
+### These are all normal distributions, they are shuffled because no seed was set but the means remained 7, 13 and 18.
+```
+
