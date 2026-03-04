@@ -91,7 +91,7 @@ c. Use a for loop to repeat the function in b 100 times. Store the results in a 
 n_sim <- 100
 
 results_df <- data.frame(
-  replicate = 1:n_reps,
+  replicate = 1:n_sim,
   mean1 = NA,
   mean2 = NA,
   mean3 = NA
