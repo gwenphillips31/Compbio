@@ -113,3 +113,87 @@ pivotsw
 wideSW%>%
   pivot_longer(cols=male:female, names_to="sex", values_to="height",
 values_drop_na=TRUE)
+
+############################################################################
+############SQL#############################################################
+
+library(tidyverse)
+library(sqldf)
+
+### read dataset
+species_clean<- read.csv("site_by_species.csv")
+var_clean<- read.csv("site_by_variables.csv")
+
+### start with operations/functions on just one file
+
+### subsetting rows
+###dplyr:: filter()
+species<- filter(species_clean, Site<30)
+species
+
+var<- filter(var_clean, Site< 30)
+var
+
+query<- "SELECT Site, Sp1, Sp2, Sp3 From species WHERE Site<'30'"
+x<- sqldf(query)
+
+edit_species<- species%>%
+  select(Site, Sp1, Sp2, Sp3)
+
+edit_species2<- species%>%
+  select(1,2,3,4)### calls on positions instead of column names
+
+query<- "SELECT * FROM species"
+a<- sqldf(query)
+
+### Renaming columns
+### in dplyr you would use rename
+
+species<- rename(species, Long= Longitude.x., Lat= Latitude.y.)
+head(species)
+
+### in sql you can use the as command
+query<- "SELECT Long AS Longitude FROM species"
+sqldf(query)
+
+###Pull numeric columns
+num_species<- species%>%
+  mutate(letters=rep(letters, length.out=length(species$Site)))
+
+num_species<- select(num_species, Site, Long, Lat, Sp1, letters)
+
+num_species_edit<- select(num_species, where(is.numeric))
+
+# Pivot longer to lengthen the data and reduce num cols but increases rows, you may see gather()/spread() but has sense been replaced
+species_long<- pivot_longer(edit_species, cols=c(Sp1, Sp2, Sp3), names_to="ID")
+
+species_wide<- pivot_wider(species_long, names_from=ID)
+
+### SQL
+query="SELECT SUM(Sp1+Sp2+Sp3)AS Occurence FROM species_wide GROUP BY SITE"
+sqldf(query)
+
+### start with clean versions of variables
+
+edit_species<- species_clean%>%
+  filter(Site<30)%>%
+  select(Site, Sp1, Sp2, Sp3, Sp4, Longitude.x., Latitude.y.)
+
+edit_var<- var_clean%>%
+  filter(Site<30)%>%
+  select(Site, BIO1_Annual_mean_temperature, BIO12_Annual_precipitation,
+     Longitude.x., Latitude.y.)
+
+### Left join- stitching matching rows from file b to a reqs a matching column to link the two datasets
+
+left<- left_join(edit_species, edit_var, by="Site")
+
+right<- right_join(edit_species, edit_var, by="Site")
+
+inner<- inner_join(edit_species, edit_var, by="Site") ### retains rows that match and losses information that doesn't match
+### full joins retain all the information but you end up with NAs
+full<- full_join(edit_species, edit_var, by="Site")
+
+### SQL mwthod
+query<- "SELECT * FROM edit_var RIGHT JOIN edit_species ON edit_var.Site=edit_species.Site"
+x<- sqldf(query)
