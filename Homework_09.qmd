@@ -75,4 +75,15 @@ d4 <- d3 %>%
   mutate(binarypetallength = if_else(Petal.Length < "5.5", 1, 0))
 head(d4)
 
+d5<- d |>
+    mutate(d, newPetal= Petal.Length>= 4)
+x_treatment<- d5$Species
+y_outcome<- d5$newPetal
+summary_data<- data.frame(x_treatment, y_outcome)
+
+dd1<- ggplot(data=summary_data)+
+    aes(x = x_treatment) + 
+  geom_bar(aes(fill= as.factor(y_outcome))) 
+
+print(dd1)
 ```
