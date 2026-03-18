@@ -41,6 +41,7 @@ Points overlaid using jitter (geom_jitter())
 ```{r}
 ggplot(iris, aes(x = Species, y = Petal.Length, fill = Species)) +
   geom_violin(alpha = 0.5) +
+   labs(title = "Species vs Petal Length", y= "Petal Length")+
   geom_jitter(width = 0.2, alpha = 0.7)
     
 ```
