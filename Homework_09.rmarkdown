@@ -1,0 +1,77 @@
+---
+title: "Homework_09"
+format: html
+---
+
+### Homework 9
+### 18 March 2026
+### Gwen Phillips
+
+#############################################################
+
+load in packages
+
+```{r}
+library(ggplot2)
+library(dplyr)
+d<- iris
+```
+
+Q1. Create
+Scatter plot of (y) vs (x)
+Regression line using geom_smooth(method = "lm")
+
+```{r}
+head(d)
+ggplot(data=d)+
+  aes(x=Petal.Length, y= Petal.Width)+
+  geom_point() +
+    labs(
+    title = "Petal Width vs Petal Length",
+    x = "Petal Length", y = "Petal Width")+
+  geom_smooth() +
+  geom_smooth(method = "lm", col= "red")
+```
+
+Q2. Create
+Boxplot or violin plot
+Points overlaid using jitter (geom_jitter())
+
+
+```{r}
+ggplot(iris, aes(x = Species, y = Petal.Length, fill = Species)) +
+  geom_violin(alpha = 0.5) +
+  geom_jitter(width = 0.2, alpha = 0.7)
+    
+```
+
+Q3. Create 
+Jittered points
+Logistic regression curve using geom_smooth(method = "glm", method.args = list(family = "binomial"))
+
+```{r}
+d2<- filter(iris, Species!="setosa")
+library(ggplot2)
+
+d3 <- d2 %>%
+  mutate(binary = if_else(Species == "virginica", 1, 0))
+head(d3)
+
+ggplot(d3, aes(x = Petal.Length, y = binary)) +
+  geom_jitter(height = 0.05, width = 0, alpha = 0.5) +
+  geom_smooth(method = "glm", 
+              method.args = list(family = "binomial"), 
+              se = TRUE) +
+  labs(title = "Logistic Regression with Jittered Data",
+       x = "Petal Length)",
+       y = "Species (Versicolor=0, Virginica=1)") 
+```
+
+Q4. Create a mosaic plot using two discrete variables
+
+```{r}
+d4 <- d3 %>%
+  mutate(binarypetallength = if_else(Petal.Length < "5.5", 1, 0))
+head(d4)
+
+```
