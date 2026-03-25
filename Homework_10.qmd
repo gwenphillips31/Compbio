@@ -1,0 +1,102 @@
+---
+title: "Homework 10"
+format: html
+---
+
+Gwen Phillips
+3/25/26
+Intro to python
+#################################################################
+
+Create a list of any length that contains a mix of numeric, character strings, boolean variables, and at least one other list.
+1) Pull out the third element in the list and store it as a new object.
+2) Index into the primary list extracting the interior list and save the 3rd element in it as listWithinList.
+3) Use at least two list methods (.pop(), .append(), .remove(), etc.) and briefly describe their effects (1 sentence each).
+
+```{python}
+### Q1
+a_list= [3,6,9,12,15]
+b_list = [1,2,3,4,5, "purple", "green", True, False, a_list]
+
+### Part 1
+object= b_list[2]
+
+### Part 2
+listWithinList= b_list[9][2]
+
+### Part 3
+b_list.insert(1, 1.5)
+### The instert funtion inserts the value (1.5) into the 1st postion of the list
+
+b_list.remove(1.5)
+### Thr remove funtion removes a value from the list
+```
+
+Create a dictionary that contains at least 5 keys and 5 values.
+1) Extract all of the keys and save as "keys".
+2) Extract all of the values and save as "values".
+3) Use two dictionary methods on your dictionary and briefly describe their effects (1 sentence each).
+4) Add a new element to the dictionary.
+5) Remove a different element from the dictionary.
+
+```{python}
+### Q2
+fish = {
+    "RBT": 50, ## Rainbow trout
+    "BNT": 75, ## Brown trout
+    "ARG": 10, ## Arctic grayling
+    "WAE": 2,  ## Walleye
+    "CRC": 150 ## Creek chub
+}
+
+### Part 1
+keys= fish.keys()
+
+### Part 2
+values= fish.values()
+
+### Part 3
+fish.get("BNT")
+### using the .get function you retreive the value associated with the key
+
+fish.copy()
+### The copy function makes a copy of you dictionary
+
+### Part 4
+fish["WHS"]=120 ### White sucker
+
+### Part 5
+del fish["ARG"]
+```
+
+Create a numpy array of length 100 with values bound between 0 and 1 and save as arr1.
+1) Extract the last 10 elements using negative indexing
+2) Convert the numeric (float) data to character strings and then convert back to a float.
+3) Reshape the length 100 array (arr1) to be a 10x10, 2D array called arr2D.
+4) Create a binary array that is 10x10 where 1s are generated with a probablilty of .2 and 0s with a probability of .8 and store as arr_bin.
+5) Join these two arrays (arr2D and arr_bin) to be a 10x10x2 3D data cube where the first layer is the float data and the second layer is the binary array.
+
+```{python}
+Q3
+import numpy as np
+arr1= np.random.uniform(low=0, high=1, size=100)
+
+### Part 1
+arr1[-10:]
+
+### Part 2
+arr1.astype(str)
+arr1.astype(float)
+
+### Part 3
+arr2D= arr1.reshape(10,10)
+print(arr2D)
+
+### Part 4
+arr_bin= np.random.choice([0, 1], size=(10, 10), p=[0.8, 0.2])
+print(arr_bin)
+
+### Part 5
+arr3D= np.stack([arr2D, arr_bin])
+print(arr3D)
+```

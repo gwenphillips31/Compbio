@@ -120,7 +120,7 @@ dataTypes={
     "float": 3.14342,
     "list": (1,2,3,"a"),
     "boolean": False
-}
+    }
 
 ### Calling values by using key name in brackets
 dataTypes["string"]
