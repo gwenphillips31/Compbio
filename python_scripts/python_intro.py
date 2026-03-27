@@ -381,10 +381,79 @@ pd.pivot_table(ds_long, values="vals", index=["vars"], columns=["species"], aggf
 pd.pivot_table(ds_long, values="vals", index=["vars"], columns=["species"], aggfunc=np.sum)
 
 
-# stacking:
-mean_table # original table
-mean_table.stack() # stacked table
 
-# stacking:
-mult_indx # original table
-mult_indx.unstack() # unstacked table
+### GRAPHICS seaborn
+
+### import seaborn
+
+import seaborn as sns
+
+sns.set_theme(style="ticks", font_scale = 1.5)
+
+# ------ SCATTER PLOTS ------ #
+# Species as column
+sns.relplot(
+      data=ds,
+      x="sepal_width", y="petal_length",
+      col="species")
+plt.show()
+
+# Species as style and color
+sns.relplot(
+      data=ds,
+      x="sepal_width", y="petal_length",
+      style="species", hue="species")
+plt.show()
+
+# Species as color - adding some features
+f = sns.relplot(
+      data=ds,
+      x="sepal_width", y="petal_length",
+      hue="species", palette="bright")
+      
+f.set_axis_labels("Sepal Width", "Petal Length", labelpad=10)
+f.legend.set_title("Species")
+f.ax.margins(.15)
+plt.show()
+
+# lets move the legend
+sns.set_theme(style = "white", font_scale = 1.5)
+
+# Species as color - adding some features
+f = sns.relplot(
+      data=ds,
+      x="sepal_width", y="petal_length",
+      hue="species", palette="bright")
+      
+f.set_axis_labels("Sepal Width", "Petal Length", labelpad=10)
+
+# 'upper right', 'upper left', 'lower left', 'lower right', 'right', 'center left', 'center right', 'lower center', 'upper center', 'center'
+sns.move_legend(
+    f, "upper center",
+    bbox_to_anchor=(.5, 1), ncol=3, title=None, frameon=False,
+)
+
+plt.show()
+
+# ------ LINEAR FITS ------ #
+f = sns.lmplot(
+      data=ds,
+      x="sepal_width", y="petal_length",
+      hue="species", palette="bright")
+      
+f.set_axis_labels("Sepal Width", "Petal Length", labelpad=10)
+
+plt.show()
+
+# ------ A 4 PANEL HISTOGRAM ------ #
+f = sns.displot(
+    ds_long,
+    x="vals", hue="species",
+    col="vars", col_wrap=2, height=3,
+    kde=True,
+)
+plt.show()
+
+# ------ A BAR PLOT ------ #
+sns.catplot(data=ds_long, kind="bar", x="species", y="vals", hue="vars")
+plt.show()
