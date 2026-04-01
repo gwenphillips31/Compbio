@@ -77,7 +77,7 @@ Create a numpy array of length 100 with values bound between 0 and 1 and save as
 5) Join these two arrays (arr2D and arr_bin) to be a 10x10x2 3D data cube where the first layer is the float data and the second layer is the binary array.
 
 ```{python}
-Q3
+### Q3
 import numpy as np
 arr1= np.random.uniform(low=0, high=1, size=100)
 
