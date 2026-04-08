@@ -25,3 +25,5 @@ To learn more about Quarto websites visit <https://quarto.org/docs/websites>.
 [Homework_10](Homework_10.html)
 
 [Homework_11](Homework_11.html)
+
+[Homework_12](Homework_12.html)

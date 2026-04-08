@@ -1,0 +1,56 @@
+---
+title: "Homework 12"
+format: html
+---
+
+
+Q1
+```{python}
+import json
+import pandas as pd
+import plotly.express as px
+import plotly.graph_objects as go
+
+gap = px.data.gapminder().query("continent == 'Europe' & year == 1997")
+
+gap.head()
+
+fig1= px.choropleth(
+    gap,
+    locations="iso_alpha",      
+    color="gdpPercap",         
+    hover_name="country", 
+    hover_data={
+        "gdpPercap":":,.0f",  
+        "pop":":,",
+        "iso_alpha":False},    
+    color_continuous_scale="Viridis",
+    scope="europe",
+    title= "European populations and GDP",
+    projection="orthographic")
+
+fig1.show()
+
+### I added the projection arguement and it squished and distorted europe.
+
+```
+
+Q2
+```{python}
+gap2 = px.data.gapminder().query("year == 1992")
+
+fig2 = px.scatter_geo(
+    gap2,
+    locations="iso_alpha",  
+    color="continent",      
+    size="pop",                
+    hover_name="country",      
+    hover_data=["pop", "lifeExp"], 
+    title="World Population and Life Expectancy (1992)",
+    opacity=0.1
+)
+
+fig2.show()
+
+### Using opacity, I changed the opacity of the bubbles, 1 makes it solid where 0.1 is very transparent
+```
