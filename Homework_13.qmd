@@ -1,0 +1,69 @@
+---
+title: "Homework 13"
+format: html
+---
+
+Q1: How does life expectancy change with gdp
+
+
+Answer: I expected life expectancy to increase per gdp with increased values in developed continents. GDP is a common way to predict f a country has higher life expectancy. There is very large variation between richer and poorer countries but there appears to be a relationship.
+```{r}
+# Load libraries
+library(gapminder)
+library(dplyr)
+library(ggplot2)
+
+head(gapminder)
+
+### How does life expectancy change with gdp
+
+model <- glm(lifeExp ~ gdpPercap * continent,
+             family = Gamma(link = "log"),
+             data = gapminder)
+
+summary(model)
+
+ggplot(gapminder, aes(x = gdpPercap, y = lifeExp, color = continent)) +
+  geom_point(alpha = 0.4)  +
+  scale_x_log10() +
+  labs(
+    title = "Gamma GLM: Life Expectancy vs GDP per Capita by Continent",
+    x = "GDP per Capita (log scale)",
+    y = "Life Expectancy"
+  ) +
+  theme_minimal()
+
+```
+
+
+Q2: How does population affect gdp
+
+Answer: There does not appear to be a strong relationship between gdp and population. There are some countries that have very high gdp per populations, especially in Asia. This was not a relationship I expected to be strong.
+```{r}
+library(gapminder)
+library(lme4)
+library(dplyr)
+
+data <- gapminder %>%
+  mutate(
+    log_pop = log(pop),
+    log_gdpPercap = log(gdpPercap)
+  )
+
+model2 <- lmer(
+  log_gdpPercap ~ log_pop + year + continent + (1 | country),
+  data = data
+)
+
+summary(model2)
+
+ggplot(data, aes(x = log_pop, y = gdpPercap, color = continent)) +
+  geom_point(alpha = 0.4)  +
+  scale_x_log10() +
+  labs(
+    title = "GDP per capita by continent vs log of population",
+    x = "Population (log)",
+    y = "GDP per capita"
+  ) +
+  theme_minimal()
+```

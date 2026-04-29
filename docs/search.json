@@ -4,7 +4,7 @@
     "href": "index.html",
     "title": "Comp bio",
     "section": "",
-    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nHomework_2\nHomework_3\nHomework_4\nHomework_5\nHomework_6\nHomework_7\nHomework_8\nHomework_9\nHomework_10\nHomework_11"
+    "text": "This is a Quarto website.\nTo learn more about Quarto websites visit https://quarto.org/docs/websites.\nHomework_2\nHomework_3\nHomework_4\nHomework_5\nHomework_6\nHomework_7\nHomework_8\nHomework_9\nHomework_10\nHomework_11\nHomework_12"
   },
   {
     "objectID": "Homework_02.html",
@@ -82,5 +82,12 @@
     "title": "Homework_11",
     "section": "",
     "text": "https://github.com/gwenphillips31/Homework_11"
+  },
+  {
+    "objectID": "Homework_12.html",
+    "href": "Homework_12.html",
+    "title": "Homework 12",
+    "section": "",
+    "text": "Q1\n\nimport json\nimport pandas as pd\nimport plotly.express as px\nimport plotly.graph_objects as go\n\ngap = px.data.gapminder().query(\"continent == 'Europe' & year == 1997\")\n\ngap.head()\n\nfig1= px.choropleth(\n    gap,\n    locations=\"iso_alpha\",      \n    color=\"gdpPercap\",         \n    hover_name=\"country\", \n    hover_data={\n        \"gdpPercap\":\":,.0f\",  \n        \"pop\":\":,\",\n        \"iso_alpha\":False},    \n    color_continuous_scale=\"Viridis\",\n    scope=\"europe\",\n    title= \"European populations and GDP\",\n    projection=\"orthographic\")\n\nfig1.show()\n\n### I added the projection arguement and it squished and distorted europe.\n\n                            \n                                            \n\n\nQ2\n\ngap2 = px.data.gapminder().query(\"year == 1992\")\n\nfig2 = px.scatter_geo(\n    gap2,\n    locations=\"iso_alpha\",  \n    color=\"continent\",      \n    size=\"pop\",                \n    hover_name=\"country\",      \n    hover_data=[\"pop\", \"lifeExp\"], \n    title=\"World Population and Life Expectancy (1992)\",\n    opacity=0.1\n)\n\nfig2.show()\n\n### Using opacity, I changed the opacity of the bubbles, 1 makes it solid where 0.1 is very transparent"
   }
 ]
